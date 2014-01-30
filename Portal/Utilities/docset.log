@@ -1,0 +1,11 @@
+mkdir -p embedXcode.doxygen.Portal.docset/Contents/Resources/Documents
+cp Nodes.xml embedXcode.doxygen.Portal.docset/Contents/Resources
+cp Tokens.xml embedXcode.doxygen.Portal.docset/Contents/Resources
+cp Info.plist embedXcode.doxygen.Portal.docset/Contents
+tar --exclude embedXcode.doxygen.Portal.docset \
+	    --exclude Nodes.xml \
+	    --exclude Tokens.xml \
+	    --exclude Info.plist \
+	    --exclude Makefile -c -f - . \
+	    | (cd embedXcode.doxygen.Portal.docset/Contents/Resources/Documents; tar xvf -)
+/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil index embedXcode.doxygen.Portal.docset
